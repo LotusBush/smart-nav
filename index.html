@@ -214,7 +214,7 @@
             </div>
 
         </div>
-
+<!--
         <div class="w-full relative z-10 mb-12">
             <div class="glass-card rounded-2xl p-6 shadow-xl hover:border-emerald-500/20 transition-all duration-300">
                 <div class="flex justify-between items-center mb-4">
@@ -224,7 +224,7 @@
                 <div id="friend-links-container" class="grid grid-cols-2 sm:grid-cols-4 lg:grid-cols-6 gap-3"></div>
             </div>
         </div>
-
+-->
         <footer id="admin-trigger" ondblclick="triggerAdminLogin()" class="text-slate-500 text-xs mt-4 cursor-pointer select-none tracking-wide hover:text-indigo-400/70 transition-colors" title="后台入口 (双击 / Double Click)">
             <span data-i18n="footerText">&copy; 2026 科技共享-智能生态导航 · Powered by Cloudflare</span> <span id="admin-badge" class="ml-1 text-[10px] px-1.5 py-0.5 rounded bg-indigo-500/20 text-indigo-400 font-bold hidden" data-i18n="adminBadge">已登入</span>
         </footer>
@@ -303,16 +303,7 @@
             }
         };
 
-        const dynamicLinkDict = {
-            "https://kjgx668.blogspot.com": { zh: "科技共享", en: "TechShare Blog" },
-            "https://kjgx.168668520.xyz": { zh: "科技共享导航", en: "TechShare Nav" },
-            "https://it-toutiao.blogspot.com": { zh: "IT头条博客", en: "IT Toutiao Blog" }
-        };
 
-        function getLocalizedLinkName(originalName, url) {
-            if (url && dynamicLinkDict[url]) return dynamicLinkDict[url][currentLang];
-            return originalName;
-        }
         function t(key) { return i18n[currentLang][key] || key; }
         function setLanguage(lang) {
             currentLang = lang; localStorage.setItem('nav_lang', lang); document.documentElement.lang = lang === 'zh' ? 'zh-CN' : 'en';
@@ -559,9 +550,9 @@
                     const btnClass = isCompact ? 'right-1 text-[10px] px-1 py-0.5' : 'right-2 text-xs p-1';
 
                     visibleLinks.forEach((link, idx) => {
-                        const displayName = getLocalizedLinkName(link.name, link.url);
-                        let displayIcon = `<div class="${iconSizeClass} rounded-full bg-indigo-500/20 text-indigo-400 flex items-center justify-center font-bold shrink-0">${displayName.charAt(0).toUpperCase()}</div>`;
-                        try { if(link.url) displayIcon = `<img src="https://unavatar.io/duckduckgo/${new URL(link.url).hostname}" draggable="false" onerror="this.style.display='none'" class="${imgSizeClass} rounded object-contain shrink-0" alt="icon" />`; } catch(e){}
+                        //const displayName = getLocalizedLinkName(link.name, link.url);
+                        //let displayIcon = `<div class="${iconSizeClass} rounded-full bg-indigo-500/20 text-indigo-400 flex items-center justify-center font-bold shrink-0">${displayName.charAt(0).toUpperCase()}</div>`;
+                        //try { if(link.url) displayIcon = `<img src="https://unavatar.io/duckduckgo/${new URL(link.url).hostname}" draggable="false" onerror="this.style.display='none'" class="${imgSizeClass} rounded object-contain shrink-0" alt="icon" />`; } catch(e){}
 
                         linksHtml += `
                         <div class="group relative flex items-center justify-between ${pClass} bg-slate-500/5 border border-slate-500/10 rounded-xl hover:bg-indigo-600/10 transition-all"
@@ -713,9 +704,9 @@
             const textSizeClass = isCompact ? 'text-[11px]' : 'text-sm'; const prClass = isCompact ? 'pr-4' : 'pr-5'; const btnClass = isCompact ? 'right-1 text-[10px] px-1 py-0.5' : 'right-2 text-xs p-1';
 
             visibleLinks.forEach((item, index) => {
-                const displayName = getLocalizedLinkName(item.name, item.url);
-                let displayIcon = `<div class="${iconSizeClass} rounded-full bg-indigo-500/20 text-indigo-400 flex items-center justify-center font-bold shrink-0">${displayName.charAt(0).toUpperCase()}</div>`;
-                try { if(item.url) displayIcon = `<img src="https://unavatar.io/duckduckgo/${new URL(item.url).hostname}" draggable="false" onerror="this.style.display='none'" class="${imgSizeClass} rounded object-contain shrink-0" alt="icon" />`; } catch(err){}
+                //const displayName = getLocalizedLinkName(item.name, item.url);
+               // let displayIcon = `<div class="${iconSizeClass} rounded-full bg-indigo-500/20 text-indigo-400 flex items-center justify-center font-bold shrink-0">${displayName.charAt(0).toUpperCase()}</div>`;
+               // try { if(item.url) displayIcon = `<img src="https://unavatar.io/duckduckgo/${new URL(item.url).hostname}" draggable="false" onerror="this.style.display='none'" class="${imgSizeClass} rounded object-contain shrink-0" alt="icon" />`; } catch(err){}
                 
                 container.innerHTML += `
                     <div class="group relative flex items-center justify-between ${pClass} bg-slate-500/5 border border-slate-500/10 rounded-xl hover:bg-indigo-600/10 transition-all">
@@ -739,7 +730,7 @@
 
         function loadFriendLinks() {
             const container = document.getElementById('friend-links-container'); let linksStr = localStorage.getItem('nav_friend_links'); let links = linksStr ? JSON.parse(linksStr) : []; container.innerHTML = '';
-            if(links.length === 0) { links = [ { name: "IT头条博客", url: "https://it-toutiao.blogspot.com" }, { name: "科技共享导航", url: "https://kjgx.168668520.xyz" } ]; }
+            //if(links.length === 0) { links = [ { name: "IT头条博客", url: "https://it-toutiao.blogspot.com" }, { name: "科技共享导航", url: "https://kjgx.168668520.xyz" } ]; }
             links.forEach((item, index) => {
                 const displayName = getLocalizedLinkName(item.name, item.url);
                 container.innerHTML += `

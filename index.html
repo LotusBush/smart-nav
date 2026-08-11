@@ -313,7 +313,7 @@
             document.getElementById('page-title').innerText = t('pageTitle');
             document.querySelectorAll('[data-i18n]').forEach(el => { el.innerHTML = t(el.getAttribute('data-i18n')); });
             document.querySelectorAll('[data-i18n-placeholder]').forEach(el => { el.placeholder = t(el.getAttribute('data-i18n-placeholder')); });
-            loadCustomLinks(); loadFriendLinks(); renderDynamicSections();
+            loadCustomLinks(); renderDynamicSections();
         }
 
         // --- 1. 管理员鉴权 (动态密码校验) ---
@@ -672,7 +672,7 @@
                 const secId = currentModalTarget.replace('section_', ''); let secs = cloudConfig.dynamicSections || []; const sec = secs.find(s => s.id === secId);
                 if(sec) { sec.links.push({ name, url }); saveDynamicSections(secs); }
             } else if(currentModalTarget === 'friend') {
-                let links = JSON.parse(localStorage.getItem('nav_friend_links') || '[]'); links.push({ name, url }); localStorage.setItem('nav_friend_links', JSON.stringify(links)); loadFriendLinks();
+                let links = JSON.parse(localStorage.getItem('nav_friend_links') || '[]'); links.push({ name, url }); localStorage.setItem('nav_friend_links', JSON.stringify(links)); 
             } else {
                 try { const res = await fetch('/api/links'); let links = res.ok ? await res.json() : JSON.parse(localStorage.getItem('nav_custom_links') || '[]'); links.push({ name, url }); await fetch('/api/links', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(links) }); localStorage.setItem('nav_custom_links', JSON.stringify(links)); loadCustomLinks(); } 
                 catch (error) { const links = JSON.parse(localStorage.getItem('nav_custom_links') || '[]'); links.push({ name, url }); localStorage.setItem('nav_custom_links', JSON.stringify(links)); loadCustomLinks(); }
@@ -727,20 +727,6 @@
 
         function toggleExpandCustomLinks() { isCustomLinksExpanded = !isCustomLinksExpanded; loadCustomLinks(); }
         async function deleteCustomLink(e, index) { e.preventDefault(); e.stopPropagation(); if(!confirm(t('delConfirm'))) return; try { const res = await fetch('/api/links'); let links = res.ok ? await res.json() : JSON.parse(localStorage.getItem('nav_custom_links') || '[]'); links.splice(index, 1); await fetch('/api/links', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(links) }); localStorage.setItem('nav_custom_links', JSON.stringify(links)); if(links.length <= 9) isCustomLinksExpanded = false; loadCustomLinks(); } catch(error) { const links = JSON.parse(localStorage.getItem('nav_custom_links') || '[]'); links.splice(index, 1); localStorage.setItem('nav_custom_links', JSON.stringify(links)); if(links.length <= 9) isCustomLinksExpanded = false; loadCustomLinks(); } }
-
-        function loadFriendLinks() {
-            const container = document.getElementById('friend-links-container'); let linksStr = localStorage.getItem('nav_friend_links'); let links = linksStr ? JSON.parse(linksStr) : []; container.innerHTML = '';
-            //if(links.length === 0) { links = [ { name: "IT头条博客", url: "https://it-toutiao.blogspot.com" }, { name: "科技共享导航", url: "https://kjgx.168668520.xyz" } ]; }
-            links.forEach((item, index) => {
-                const displayName = getLocalizedLinkName(item.name, item.url);
-                container.innerHTML += `
-                    <div class="group relative flex items-center justify-between p-2.5 bg-slate-500/5 border border-slate-500/10 rounded-xl hover:bg-emerald-600/10 transition-all text-center">
-                        <a href="${item.url}" draggable="false" target="_blank" rel="noopener noreferrer" class="w-full text-xs font-medium text-slate-400 hover:text-emerald-400 transition-colors truncate px-2">${displayName}</a>
-                        <button type="button" onclick="deleteFriendLink(event, ${index})" class="admin-only absolute right-1 text-[10px] text-slate-500 hover:text-red-400 opacity-0 group-hover:opacity-100 transition-opacity bg-slate-500/10 px-1 rounded cursor-pointer"><i class="fas fa-times"></i></button>
-                    </div>`;
-            });
-        }
-        function deleteFriendLink(e, index) { e.preventDefault(); e.stopPropagation(); let linksStr = localStorage.getItem('nav_friend_links'); let links = linksStr ? JSON.parse(linksStr) : []; if(links.length === 0) { links = [ { name: "IT头条博客", url: "https://it-toutiao.blogspot.com" }, { name: "科技共享导航", url: "https://kjgx.168668520.xyz" } ]; } links.splice(index, 1); localStorage.setItem('nav_friend_links', JSON.stringify(links)); loadFriendLinks(); }
 
         // --- 初始化运转 ---
         document.addEventListener('click', () => { document.getElementById('engine-menu').classList.add('hidden'); document.getElementById('theme-panel').classList.add('hidden'); });

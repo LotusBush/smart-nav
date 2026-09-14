@@ -654,7 +654,7 @@
             container.innerHTML = '';
             
             if(links.length === 0) { 
-                container.innerHTML = `<div class="col-span-full text-center text-xs text-slate-400/60 py-10">${t('noCloudLinks')}</div>`; 
+                container.innerHTML = ``; //<div class="col-span-full text-center text-xs text-slate-400/60 py-10">${t('noCloudLinks')}</div>
                 actionWrapper.classList.add('hidden'); 
                 container.className = 'grid grid-cols-2 gap-3';
                 return; 

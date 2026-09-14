@@ -290,7 +290,10 @@
             }
         };
 
-
+        function getLocalizedLinkName(originalName, url) {
+            if (url && dynamicLinkDict[url]) return dynamicLinkDict[url][currentLang];
+            return originalName;
+        }
         function t(key) { return i18n[currentLang][key] || key; }
         function setLanguage(lang) {
             currentLang = lang; localStorage.setItem('nav_lang', lang); document.documentElement.lang = lang === 'zh' ? 'zh-CN' : 'en';

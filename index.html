@@ -646,11 +646,11 @@
             } toggleModal(false);
         }
 
-        async function loadCustomLinks() {
-            const container = document.getElementById('custom-links-container'); const actionWrapper = document.getElementById('expand-action-wrapper');
-            container.innerHTML = `<div class="col-span-full text-center text-xs text-slate-400/60 py-10"><i class="fas fa-spinner fa-spin"></i> ${t('loadingCloud')}</div>`;
+        async function loadCustomLinks() {/*
+            //const container = document.getElementById('custom-links-container'); const actionWrapper = document.getElementById('expand-action-wrapper');
+            //container.innerHTML = `<div class="col-span-full text-center text-xs text-slate-400/60 py-10"><i class="fas fa-spinner fa-spin"></i> ${t('loadingCloud')}</div>`;
             let links = []; try { const res = await fetch('/api/links'); if(res.ok) links = await res.json(); else throw new Error(); } catch(e) { links = JSON.parse(localStorage.getItem('nav_custom_links') || '[]'); }
-            container.innerHTML = '';
+            //container.innerHTML = '';
             
             if(links.length === 0) { 
                 //container.innerHTML = `<div class="col-span-full text-center text-xs text-slate-400/60 py-10">${t('noCloudLinks')}</div>`; 
@@ -660,7 +660,7 @@
             }
 
             const isCompact = links.length > 6;
-            container.className = isCompact ? 'grid grid-cols-3 gap-2' : 'grid grid-cols-2 gap-3';
+            //container.className = isCompact ? 'grid grid-cols-3 gap-2' : 'grid grid-cols-2 gap-3';
 
             let visibleLinks = links;
             let showExpandBtn = false;
@@ -689,7 +689,7 @@
             if (showExpandBtn) { 
                 actionWrapper.classList.remove('hidden'); const btn = document.getElementById('expand-btn'); 
                 btn.innerHTML = isCustomLinksExpanded ? `<span data-i18n="collapseMore">${t('collapseMore')}</span> <i class="fas fa-chevron-up text-[10px]"></i>` : `<span data-i18n="expandMore">${t('expandMore')}</span> (${links.length - 9}) <i class="fas fa-chevron-down text-[10px]"></i>`; 
-            } else { actionWrapper.classList.add('hidden'); }
+            } else { actionWrapper.classList.add('hidden'); }*/
         }
 
         function toggleExpandCustomLinks() { isCustomLinksExpanded = !isCustomLinksExpanded; loadCustomLinks(); }

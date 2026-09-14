@@ -193,12 +193,9 @@
                     <a href="https://caniuse.com" target="_blank" rel="noopener noreferrer" class="flex items-center space-x-3 p-3 bg-slate-500/5 rounded-xl hover:bg-purple-600/20 transition-all"><i class="fas fa-browser text-xl text-sky-400"></i> <span class="text-sm font-medium">CanIUse</span></a>
                 </div>
             </div>
-
+-->
             <div id="card-custom" class="glass-card rounded-2xl p-6 shadow-xl hover:border-pink-500/30 transition-all duration-300 xl:col-span-1">
-                <div class="flex justify-between items-center mb-4">
-                    <h3 class="text-lg font-semibold text-pink-400 flex items-center"><i class="fas fa-folder-plus mr-2.5"></i> <span data-i18n="cardCustom">站长推荐</span></h3>
-                    <button type="button" onclick="openLinkModal('custom')" class="admin-only text-xs px-2.5 py-1 bg-pink-600/20 text-pink-400 border border-pink-500/20 rounded-lg hover:bg-pink-600/40 transition-colors cursor-pointer z-[50]" data-i18n="addCloud">添加 (云端)</button>
-                </div>
+
                 <div id="custom-links-container"></div>
                 <div id="expand-action-wrapper" class="mt-4 pt-2 border-t border-slate-500/10 text-center hidden">
                     <button onclick="toggleExpandCustomLinks()" id="expand-btn" class="text-xs font-semibold text-pink-400 hover:text-pink-300 transition-colors cursor-pointer inline-flex items-center gap-1">
@@ -206,7 +203,7 @@
                     </button>
                 </div>
             </div>
--->
+
             <!-- 添加动态分类按钮 (管理员可见) -->
             <div id="add-section-card" class="admin-only glass-card rounded-2xl p-6 flex flex-col items-center justify-center cursor-pointer hover:border-indigo-500/50 transition-all border-dashed border-2 border-slate-500/30 xl:col-span-1" onclick="addCustomSection()" style="min-height: 180px;">
                 <i class="fas fa-plus text-3xl text-slate-400 mb-2"></i>

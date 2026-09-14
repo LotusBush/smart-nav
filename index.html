@@ -551,7 +551,7 @@
                             <div class="flex items-center w-full overflow-hidden">
                                 <i class="fas fa-grip-vertical text-slate-500 opacity-0 group-hover:opacity-50 transition-opacity ${dragMrClass} cursor-move admin-only text-[10px] shrink-0"></i>
                                 <a href="${link.url}" draggable="false" target="_blank" rel="noopener noreferrer" class="flex items-center ${spaceXClass} truncate w-full ${prClass}">
-                                  
+                                   ${displayIcon} <span class="${textSizeClass} font-medium truncate">${displayName}</span>
                                 </a>
                             </div>
                             <button type="button" onclick="deleteSectionLink(event, '${sec.id}', ${idx})" class="admin-only absolute ${btnClass} text-slate-400 hover:text-red-400 opacity-0 group-hover:opacity-100 transition-opacity bg-slate-500/20 rounded cursor-pointer shrink-0"><i class="fas fa-trash-alt"></i></button>

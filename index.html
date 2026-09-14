@@ -537,9 +537,9 @@
                     const btnClass = isCompact ? 'right-1 text-[10px] px-1 py-0.5' : 'right-2 text-xs p-1';
 
                     visibleLinks.forEach((link, idx) => {
-                        //const displayName = getLocalizedLinkName(link.name, link.url);
-                        //let displayIcon = `<div class="${iconSizeClass} rounded-full bg-indigo-500/20 text-indigo-400 flex items-center justify-center font-bold shrink-0">${displayName.charAt(0).toUpperCase()}</div>`;
-                        //try { if(link.url) displayIcon = `<img src="https://unavatar.io/duckduckgo/${new URL(link.url).hostname}" draggable="false" onerror="this.style.display='none'" class="${imgSizeClass} rounded object-contain shrink-0" alt="icon" />`; } catch(e){}
+                        const displayName = getLocalizedLinkName(link.name, link.url);
+                        let displayIcon = `<div class="${iconSizeClass} rounded-full bg-indigo-500/20 text-indigo-400 flex items-center justify-center font-bold shrink-0">${displayName.charAt(0).toUpperCase()}</div>`;
+                        try { if(link.url) displayIcon = `<img src="https://unavatar.io/duckduckgo/${new URL(link.url).hostname}" draggable="false" onerror="this.style.display='none'" class="${imgSizeClass} rounded object-contain shrink-0" alt="icon" />`; } catch(e){}
 
                         linksHtml += `
                         <div class="group relative flex items-center justify-between ${pClass} bg-slate-500/5 border border-slate-500/10 rounded-xl hover:bg-indigo-600/10 transition-all"

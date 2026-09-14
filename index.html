@@ -289,7 +289,9 @@
                 pwdTitle: "Change Admin Password (Cloud Sync)", pwdInputPlace: "Enter new password", saveBtn: "Save", pwdUpdateSuccess: "Admin password updated successfully! Valid on next login."
             }
         };
+        const dynamicLinkDict = {
 
+        };
         function getLocalizedLinkName(originalName, url) {
             if (url && dynamicLinkDict[url]) return dynamicLinkDict[url][currentLang];
             return originalName;

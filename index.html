@@ -506,7 +506,7 @@
 
                 let linksHtml = '';
                 if (linkCount === 0) {
-                    linksHtml = ``;//<div class="col-span-full text-center text-xs text-slate-400/60 py-4">${t('noCloudLinks')}</div>
+                    linksHtml = `<div class="col-span-full text-center text-xs text-slate-400/60 py-4">${t('noCloudLinks')}</div>`;//
                 } else {
                     const pClass = isCompact ? 'p-2' : 'p-3';
                     const spaceXClass = isCompact ? 'space-x-1.5' : 'space-x-2.5';
@@ -654,9 +654,9 @@
             container.innerHTML = '';
             
             if(links.length === 0) { 
-                container.innerHTML = ``; //<div class="col-span-full text-center text-xs text-slate-400/60 py-10">${t('noCloudLinks')}</div>
-                actionWrapper.classList.add('hidden'); 
-                container.className = 'grid grid-cols-2 gap-3';
+                //container.innerHTML = `<div class="col-span-full text-center text-xs text-slate-400/60 py-10">${t('noCloudLinks')}</div>`; 
+                //actionWrapper.classList.add('hidden'); 
+                //container.className = 'grid grid-cols-2 gap-3';
                 return; 
             }
 
@@ -672,9 +672,9 @@
             const textSizeClass = isCompact ? 'text-[11px]' : 'text-sm'; const prClass = isCompact ? 'pr-4' : 'pr-5'; const btnClass = isCompact ? 'right-1 text-[10px] px-1 py-0.5' : 'right-2 text-xs p-1';
 
             visibleLinks.forEach((item, index) => {
-                //const displayName = getLocalizedLinkName(item.name, item.url);
-               // let displayIcon = `<div class="${iconSizeClass} rounded-full bg-indigo-500/20 text-indigo-400 flex items-center justify-center font-bold shrink-0">${displayName.charAt(0).toUpperCase()}</div>`;
-               // try { if(item.url) displayIcon = `<img src="https://unavatar.io/duckduckgo/${new URL(item.url).hostname}" draggable="false" onerror="this.style.display='none'" class="${imgSizeClass} rounded object-contain shrink-0" alt="icon" />`; } catch(err){}
+                const displayName = getLocalizedLinkName(item.name, item.url);
+                let displayIcon = `<div class="${iconSizeClass} rounded-full bg-indigo-500/20 text-indigo-400 flex items-center justify-center font-bold shrink-0">${displayName.charAt(0).toUpperCase()}</div>`;
+                try { if(item.url) displayIcon = `<img src="https://unavatar.io/duckduckgo/${new URL(item.url).hostname}" draggable="false" onerror="this.style.display='none'" class="${imgSizeClass} rounded object-contain shrink-0" alt="icon" />`; } catch(err){}
                 
                 container.innerHTML += `
                     <div class="group relative flex items-center justify-between ${pClass} bg-slate-500/5 border border-slate-500/10 rounded-xl hover:bg-indigo-600/10 transition-all">
